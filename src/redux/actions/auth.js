@@ -1,5 +1,6 @@
 import types from '../types';
 import store from '../store';
+import auth from '@react-native-firebase/auth';
 const {dispatch} = store;
 
 export const login = loginData => {
@@ -10,10 +11,16 @@ export const login = loginData => {
   });
 };
 
-export const signup = signupData => {
-  console.log(signup, 'signup data at actions');
+export const signup = async signupData => {
+  try {
+    console.log(signupData, 'signup data at actions');
+   const res =  await auth().createUserWithEmailAndPassword(signupData)
+   console.log(res , " resinSignUp ")
   dispatch({
     type: types.SIGNUP,
     payload: signupData,
   });
+  } catch (error) {
+    console.log(error)
+  }
 };

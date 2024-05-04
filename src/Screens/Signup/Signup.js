@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import WrapperContainer from '../../Components/WrapperContainer';
 import actions from '../../redux/actions';
 import strings, {changeLaguage} from '../../constants/lang';
+import { height, moderateScale, moderateScaleVertical } from '../../styles/responsiveSize';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -23,7 +24,8 @@ const Signup = () => {
     }
   };
 
-  const onLogin = () => {
+  const onSignUp = () => {
+    alert()
     const data = {email, password};
     if (
       email != '' &&
@@ -32,7 +34,7 @@ const Signup = () => {
       password != undefined
     ) {
       // console.log(data, 'data');
-      actions.login(data);
+      actions.signup(data);
     } else {
       alert('please input valid data');
       return;
@@ -42,7 +44,7 @@ const Signup = () => {
   return (
     <WrapperContainer>
       <TextInput
-        style={{backgroundColor: 'red'}}
+      style={{backgroundColor: 'grey',height:moderateScaleVertical(42), color:'white', paddingHorizontal:moderateScale(5) }}
         placeholder={strings.EMAIL}
         placeholderTextColor="black"
         value={email}
@@ -50,7 +52,7 @@ const Signup = () => {
       />
       <View style={{marginBottom: 10}} />
       <TextInput
-        style={{backgroundColor: 'red'}}
+        style={{backgroundColor: 'grey',height:moderateScaleVertical(42), color:'white', paddingHorizontal:moderateScale(5) }}
         placeholder={strings.PASSWORD}
         placeholderTextColor="black"
         value={password}
@@ -58,7 +60,7 @@ const Signup = () => {
       />
 
       <View style={{marginBottom: 10}} />
-      <Button onPress={onLogin} title={strings.LOGIN} />
+      <Button onPress={onSignUp} title={strings.LOGIN} />
       <View style={{marginBottom: 10}} />
       <Button onPress={() => setLanguageModal(true)} title={strings.LANGUAGE} />
 
